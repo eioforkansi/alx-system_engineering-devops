@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# This Bash script configures a new Ubuntu machine to respect below requirements (this script will be run on the server itself).
+
+apt-get -y update
+apt-get -y install nginx
+ufw allow 'Nginx HTTP'
+echo "Hello world!" > index.nginx-debian.html
+service nginx restart
