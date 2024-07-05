@@ -29,10 +29,12 @@ file { '/etc/nginx/sites-available/default':
     location /redirect_me {
         return 301 https://youtube.com/;
     }
+
+
     error_page 404 /error_404.html;
     location /404 {
     root /var/www/html;
-    internal;
+        internal;
     }
     }",
     require => Package['nginx'],
@@ -40,7 +42,7 @@ file { '/etc/nginx/sites-available/default':
 }
 
 # Create a symbolic link to enable the site
-file { '/etc/nginx/sites-available/default':
+file { '/etc/nginx/sites-enabled/default':
     ensure => link,
     target => '/etc/nginx/sites-available/default',
     notify => Service['nginx'],
