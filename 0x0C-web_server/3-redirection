@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# This Bash script configures a new Ubuntu machine to respect below requirements (this script will be run on the server itself).
+
+apt-get -y update
+apt-get -y install nginx
+ufw allow 'Nginx HTTP'
+sudo su
+echo "Hello World!" > /var/www/html/index.nginx-debian.html
+echo "server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        root /var/www/html;
+        index index.html index.htm index.nginx-debian.html;
+
+        server_name _;
+
+        location / {
+                return 301 https://www.youtube.com/;
+        }
+}" > /etc/nginx/sites-available/default
+
+sudo service nginx restart
