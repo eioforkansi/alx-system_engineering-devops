@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Bash script that configures Nginx so that its HTTP response contains a custom header "X-Served-By: $hostname"
+
+sudo apt update
+sudo apt -y install nginx
+echo "server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+        add_header X-Served-By $HOSTNAME;
+        root /var/www/html;
+        index index.html index.htm;
+
+        server_name _;
+
+        location / {
+        try_files $uri $uri/ =404;
+    }
+}" > /etc/nginx/sites-available/default
+
+sudo nginx -t
+
+service nginx restart
