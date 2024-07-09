@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# Installs HAProxy version 1.8 with the following configurations:
+#+    Enables management via the init script.
+#+    Distributes requests using a round-robin algorithm.
+
+apt-get install -y software-properties-common
+add-apt-repository -y ppa:vbernat/haproxy-2.8
+apt-get update
+apt-get install -y haproxy=2.8.\*
+
+echo "ENABLED=1" >> /etc/default/haproxy
+cp  /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.original
+
+echo "
+defaults
+    mode http
+    timeout client 15s
+    timeout connect 10s
+    timeout server 15s
+    timeout http-request 10s
+
+frontend load_balancer_frontend
+    bind *:80
+    default_backend load_balancer_backend
+
+backend load_balancer_backend
+    balance roundrobin
+    server 184188-web-01 35.175.126.132:80 check
+    server 184188-web-02 34.227.93.36:80 check
+
+" >> /etc/haproxy/haproxy.cfg
+
+service haproxy restart
