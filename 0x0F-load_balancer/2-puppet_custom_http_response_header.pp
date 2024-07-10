@@ -1,3 +1,4 @@
+# Puppet manifest that creates a custom HTTP header
 exec { 'update':
     provider => shell,
     command  => 'sudo apt-get -y update',
