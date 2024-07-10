@@ -1,4 +1,4 @@
-# Installs a Nginx server with custome HTTP header
+# Puppet manifest configures a brand new Ubuntu machine with a custom HTTP header response
 
 exec {'update':
   provider => shell,
