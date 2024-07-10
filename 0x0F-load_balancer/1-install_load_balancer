@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# install load balancer
+# Bash script that installs and configures HAproxy on your lb-01 server, so that it send traffic to web-01 and web-02. Distribute requests using a roundrobin algorithm
 
 apt-get -y update
 apt-get -y install haproxy
