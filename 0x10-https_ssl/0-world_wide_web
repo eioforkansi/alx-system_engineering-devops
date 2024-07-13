@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# Bash script that will display information about subdomains.
+# The subdomain [SUB_DOMAIN] is a [RECORD_TYPE] record and points to [DESTINATION]
+
+process() {
+ line=$(dig "$2"."$1" | grep -A1 'ANSWER SECTION:' | tr '\t' '\n' | tail -2 | tr '\n' ' ')
+  echo "$2 $line" | awk '{print "The subdomain " $1 " is a " $2 " record and and points to " $3}'
+}
+
+if [ "$#" == 1 ]
+then
+  process "$1" "www" 
+  process "$1" "lb-01"
+  process "$1" "web-01"
+  process "$1" "web-02"
+elif [ "$#" == 2 ]
+then
+  process "$1" "$2"
+fi
