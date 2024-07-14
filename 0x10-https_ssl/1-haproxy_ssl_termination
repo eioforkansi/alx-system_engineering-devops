@@ -1,0 +1,12 @@
+
+frontend load_balancer_frontend
+        bind *:80
+        bind *:443 ssl crt /etc/haproxy/certs/www.eioforkansi.tech.pem
+        redirect scheme https if !{ ssl_fc }
+        default_backend load_balancer_backend
+
+backend load_balancer_backend
+        balance roundrobin
+        server 184188-web-01 35.175.126.132:80 check
+        server 184188-web-02 34.227.93.36:80 check
+
