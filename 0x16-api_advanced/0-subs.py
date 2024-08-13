@@ -4,6 +4,7 @@
 """
 import requests
 
+
 def number_of_subscribers(subreddit):
     """
     - Function that queries the Reddit API and
@@ -27,4 +28,3 @@ def number_of_subscribers(subreddit):
             return 0
     except Exception:
         return 0
-
