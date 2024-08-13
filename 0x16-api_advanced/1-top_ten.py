@@ -4,6 +4,7 @@
 """
 import requests
 
+
 def top_ten(subreddit):
     """
     - Write a function that queries the Reddit API
@@ -27,4 +28,3 @@ def top_ten(subreddit):
             print("None")
     except Exception:
         print("None")
-
