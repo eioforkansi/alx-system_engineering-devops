@@ -1,9 +1,11 @@
-Postmortem Report: ALX System Engineering & DevOps Project 0x17 Outage
-=================
-_Incident Summary_
+**Postmortem Report**: ALX System Engineering & DevOps Project 0x17 Outage
+=
+**Incident Summary**
+=
 At approximately 07:37 West African Time (WAT), following the release of the ALX System Engineering & DevOps project 0x17, an isolated Ubuntu 14.04 container running an Apache web server experienced an outage. GET requests to the server resulted in 500 Internal Server Errors, instead of returning the expected HTML file for a basic Holberton WordPress site.
 
 **Debugging Process**
+=
 The issue was first identified by bug debugger Emeka Oforkansi at around 19:20 WAT, after being assigned to resolve it. The steps taken to troubleshoot and resolve the issue were as follows:
 
 1. **Process Verification**: Checked running processes using `ps aux`. Confirmed that two `apache2` processes—one owned by `root` and the other by `www-data`—were running as expected.
@@ -23,12 +25,15 @@ The issue was first identified by bug debugger Emeka Oforkansi at around 19:20 W
 8. **Automation**: Created a Puppet manifest to automate the fix for any future occurrences of this issue.
 
 **Root Cause**
+=
 The outage was caused by a typo in the WordPress `wp-settings.php` file, where the file `class-wp-locale.php` was incorrectly referenced as `class-wp-locale.phpp`. This caused a critical application error, leading to the 500 Internal Server Error.
 
 **Resolution**
+=
 The typo was corrected, and the server returned to normal operation. A Puppet manifest was created to automate the fix for any future instances of this error.
 
 **Prevention**
+=
 To avoid similar issues in the future, the following measures are recommended:
 
 1. **Thorough Testing**: Ensure that the application is thoroughly tested before deployment. This error would have been detected and resolved during testing.
@@ -37,3 +42,6 @@ To avoid similar issues in the future, the following measures are recommended:
 
 3. **Automation**: The Puppet manifest `0-strace_is_your_friend.pp` has been created to automate the correction of any `.phpp` extensions in the `wp-settings.php` file.
 
+**Conclusion**
+=
+The issue was a simple typo that caused a significant disruption. However, with the fix implemented and automated, and by adopting preventive measures, similar outages should be avoided in the future. After all, we’re software engineers — we strive to avoid making the same mistake twice! 😉
