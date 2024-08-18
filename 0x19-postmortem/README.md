@@ -1,5 +1,5 @@
-_Postmortem Report:_ ALX System Engineering & DevOps Project 0x17 Outage
-
+Postmortem Report: ALX System Engineering & DevOps Project 0x17 Outage
+=================
 _Incident Summary_
 At approximately 07:37 West African Time (WAT), following the release of the ALX System Engineering & DevOps project 0x17, an isolated Ubuntu 14.04 container running an Apache web server experienced an outage. GET requests to the server resulted in 500 Internal Server Errors, instead of returning the expected HTML file for a basic Holberton WordPress site.
 
