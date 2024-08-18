@@ -38,7 +38,7 @@ To avoid similar issues in the future, the following measures are recommended:
 
 1. **Thorough Testing**: Ensure that the application is thoroughly tested before deployment. This error would have been detected and resolved during testing.
 
-2. **Uptime Monitoring**: Implement an uptime-monitoring service like UptimeRobot to provide instant alerts in the event of a website outage.
+2. **Webstack Monitoring**: Implement an uptime-monitoring service like DataDog to provide instant alerts in the event of a website outage.
 
 3. **Automation**: The Puppet manifest `0-strace_is_your_friend.pp` has been created to automate the correction of any `.phpp` extensions in the `wp-settings.php` file.
 
