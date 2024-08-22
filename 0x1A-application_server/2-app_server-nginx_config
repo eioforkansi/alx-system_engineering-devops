@@ -1,0 +1,15 @@
+server {
+    listen 80;
+    server_name 35.175.126.132;  # Replace with your server's IP or domain name
+
+    location /airbnb-onepage/ {
+        proxy_pass http://127.0.0.1:5000;
+        include /etc/nginx/proxy_params;
+        proxy_redirect off;
+    }
+
+    location /static/ {
+        alias /path/to/your/static/files;
+    }
+}
+
